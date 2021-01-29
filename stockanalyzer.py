@@ -1,6 +1,4 @@
-try:
-    
-except expression as identifier:
-    pass
-else:
-    pass
+x = 5 
+y = 3
+
+x  + y 
