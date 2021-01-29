@@ -1,4 +1,4 @@
-x = 5 
-y = 3
+import pandas as pd
 
-x  + y 
+ticker = ['AAPL','MSFT']
+
