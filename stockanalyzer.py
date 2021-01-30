@@ -14,7 +14,9 @@ ticker_input = str(input("Enter a ticker(s) seperate ticker by spaces: ")).upper
 ticker_list = [ticker for ticker in ticker_input.split()]
 print("Retrieving financial data for: {}".format(ticker_input + "\n"))
 
-df_list = []
+
+# Data cleaning financial summary table from Finviz for multiple ticker comparison
+tickers_df_list = []
 for tickers in ticker_list:
     url = 'https://finviz.com/quote.ashx?t=' + tickers
     try:
@@ -22,12 +24,16 @@ for tickers in ticker_list:
     except Exception:
         raise NameError("Link invalid, re-enter ticker")
 
-    # Data cleaning financial summary table from Finviz for multiple ticker comparison
+    df_list = []
     financial_df = pd.read_html(html_source, attrs = {'class': 'snapshot-table2'})[0]
     length_columns = len(financial_df.columns.tolist())
     
-    for split_times in range(2,length_columns +2 ,2):
+    for split_times in range(2,length_columns + 2 ,2):
         split_df = financial_df.iloc[:,split_times - 2:split_times].set_index(split_times - 2)
+        split_df.columns = [tickers]
         df_list.append(split_df)
+        
+    df_concat = pd.concat(df_list, axis = 0, sort = True)
+    tickers_df_list.append(df_concat)
     
-    df_concat = pd.concat(df_list, axis = 0)
+tickers_df = pd.concat(tickers_df_list, axis = 1)
