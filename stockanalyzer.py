@@ -15,8 +15,13 @@ def web_scraper(url):
     html_source = str(bs(webpage, "html.parser"))
     return html_source
 
-web_scraper(url)
+html_source = web_scraper(url)
 
-# Data cleaning financial summary table from Finviz
+# Data cleaning financial summary table from Finviz for multiple ticker comparison
+financial_df = pd.read_html(html_source, attrs = {'class': 'snapshot-table2'})[0]
 
-financial_summary = pd.read_html(html_source, attrs = {'class': 'snapshot-table2'}[0]
+length_columns = len(financial_df.columns.tolist())
+
+for split_times in range(2,length_columns +2 ,2):
+    split_df = financial_df.iloc[:,split_times - 2:split_times]
+    
