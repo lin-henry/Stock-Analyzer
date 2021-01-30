@@ -14,18 +14,20 @@ ticker_input = str(input("Enter a ticker(s) seperate ticker by spaces: ")).upper
 ticker_list = [ticker for ticker in ticker_input.split()]
 print("Retrieving financial data for: {}".format(ticker_input + "\n"))
 
+df_list = []
 for tickers in ticker_list:
     url = 'https://finviz.com/quote.ashx?t=' + tickers
-    html_source = web_scraper(url)
+    try:
+        html_source = web_scraper(url)
+    except Exception:
+        raise NameError("Link invalid, re-enter ticker")
 
-
-# Data cleaning financial summary table from Finviz for multiple ticker comparison
-financial_df = pd.read_html(html_source, attrs = {'class': 'snapshot-table2'})[0]
-length_columns = len(financial_df.columns.tolist())
-
-df_list = []
-for split_times in range(2,length_columns +2 ,2):
-    split_df = financial_df.iloc[:,split_times - 2:split_times].set_index(split_times - 2)
-    df_list.append(split_df)
-
-ticker_summary = pd.DataFrame()
+    # Data cleaning financial summary table from Finviz for multiple ticker comparison
+    financial_df = pd.read_html(html_source, attrs = {'class': 'snapshot-table2'})[0]
+    length_columns = len(financial_df.columns.tolist())
+    
+    for split_times in range(2,length_columns +2 ,2):
+        split_df = financial_df.iloc[:,split_times - 2:split_times].set_index(split_times - 2)
+        df_list.append(split_df)
+        
+        ticker_summary = pd.DataFrame()
