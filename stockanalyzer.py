@@ -29,5 +29,5 @@ for tickers in ticker_list:
     for split_times in range(2,length_columns +2 ,2):
         split_df = financial_df.iloc[:,split_times - 2:split_times].set_index(split_times - 2)
         df_list.append(split_df)
-        
-        ticker_summary = pd.DataFrame()
+    
+    df_concat = pd.concat(df_list, axis = 0)
