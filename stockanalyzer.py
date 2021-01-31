@@ -40,3 +40,5 @@ for tickers in ticker_list:
     tickers_df_list.append(df_concat)
     
 tickers_df = pd.concat(tickers_df_list, axis = 1)
+
+# Removing unwanted rows for plotting
