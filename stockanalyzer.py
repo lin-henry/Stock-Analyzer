@@ -10,9 +10,8 @@ def web_scraper(url):
     return html_source
 
 # Creating ticker urls
-ticker_input = str(input("Enter a ticker(s) seperate ticker by spaces: ")).upper()
+ticker_input = str(input("Enter a ticker(s) seperate ticker by spaces: " )).upper()
 ticker_list = [ticker for ticker in ticker_input.split()]
-print("Retrieving financial data for: {}".format(ticker_input + "\n"))
     
 # Data cleaning financial summary table from Finviz for multiple ticker comparison
 tickers_df_list = []
@@ -28,7 +27,7 @@ for tickers in ticker_list:
     financial_df = pd.read_html(str(html_source), attrs = {'class': 'snapshot-table2'})[0]
     
     name = pd.read_html(str(html_source), attrs = {'class': 'fullview-title'})[0].iloc[1][0]
-    print("Company Name Retrieved: " + name)
+    print("Retrieving data for: " + name)
     
     length_columns = len(financial_df.columns.tolist())
     
