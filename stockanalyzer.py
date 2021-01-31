@@ -27,10 +27,9 @@ for tickers in ticker_list:
     df_list = []
     financial_df = pd.read_html(str(html_source), attrs = {'class': 'snapshot-table2'})[0]
     
-    ticker_name = html_source.find_all("a",{"class": "tab-link"})[0].text      
-
+    name = pd.read_html(str(html_source), attrs = {'class': 'fullview-title'})[0].iloc[1][0]
+    print("Company Name Retrieved: " + name)
     
-    print(ticker_name)
     length_columns = len(financial_df.columns.tolist())
     
     for split_times in range(2,length_columns + 2 ,2):
