@@ -42,3 +42,18 @@ for tickers in ticker_list:
 tickers_df = pd.concat(tickers_df_list, axis = 1)
 
 # Removing unwanted rows for plotting
+
+drop_unwanted_rows = tickers_df.drop('Index
+'Employees'
+Optionable
+Shortable
+Insider Own
+Insider Trans
+RSI(14)
+Rel Volume
+Avg Volume
+Volume
+ATR
+Beta
+Volatility
+)
