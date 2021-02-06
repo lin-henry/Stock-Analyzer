@@ -47,7 +47,7 @@ tickers_df = pd.concat(tickers_df_list, axis = 1)
 
 drop_unwanted_rows = tickers_df.drop(['Index','Employees',
 'Optionable','Shortable','Insider Own','Insider Trans','RSI (14)',
-'Rel Volume','Avg Volume','Volume','ATR','Beta','Volatility','Earnings'])
+'Rel Volume','Avg Volume','Volume','ATR','Beta','Volatility','Earnings','Avg Volume'])
     
 fill_na = drop_unwanted_rows.replace('-',0)
 
