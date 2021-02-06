@@ -56,3 +56,4 @@ drop_unwanted_rows = tickers_df.drop(['Index',
 'ATR',
 'Beta',
 'Volatility'])
+
