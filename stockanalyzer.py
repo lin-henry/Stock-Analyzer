@@ -23,7 +23,7 @@ for tickers in ticker_list:
     try:
         html_source = web_scraper(url)
     except Exception:
-        raise NameError("Link invalid, re-enter ticker")
+        raise NameError("Link ticker or wepage unavailable...retry")
 
     df_list = []
     financial_df = pd.read_html(str(html_source), attrs = {'class': 'snapshot-table2'})[0]
