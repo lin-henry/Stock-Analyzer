@@ -18,8 +18,8 @@ ticker_list = [ticker for ticker in ticker_input.split()]
 # Data cleaning financial summary table from Finviz for multiple ticker comparison
 tickers_df_list = []
 for tickers in ticker_list:
-
     url = 'https://finviz.com/quote.ashx?t=' + tickers
+    
     try:
         html_source = web_scraper(url)
     except Exception:
