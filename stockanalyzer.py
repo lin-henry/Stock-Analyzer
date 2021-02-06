@@ -1,6 +1,8 @@
 import pandas as pd
 from bs4 import BeautifulSoup as bs
 from urllib.request import Request, urlopen
+import matplotlib
+import numpy as np
 
 # Web scraping function
 def web_scraper(url):
@@ -49,11 +51,14 @@ drop_unwanted_rows = tickers_df.drop(['Index',
 'Shortable',
 'Insider Own',
 'Insider Trans',
-'RSI(14)',
+'RSI (14)',
 'Rel Volume',
 'Avg Volume',
 'Volume',
 'ATR',
 'Beta',
-'Volatility'])
+'Volatility',
+'Earnings'])
+    
+fill_na = drop_unwanted_rows.replace('-',0)
 
