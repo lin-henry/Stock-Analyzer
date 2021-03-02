@@ -51,3 +51,4 @@ drop_unwanted_rows = tickers_df.drop(['Index','Employees',
     
 fill_na = drop_unwanted_rows.replace('-',0)
 
+
